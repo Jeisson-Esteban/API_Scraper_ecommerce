@@ -21,7 +21,7 @@ Por dentro corre una cascada: primero detecta si la página es Shopify, después
 ## Casos de uso
 
 - **Caso 1 — Agregador de precios multi-tienda**: tu sistema necesita pollear cada noche 15 catálogos distintos y guardar precios. Mandas 15 requests a `/scrape`, te devuelve JSON listo para meter a tu DB.
-- **Caso 2 — Catálogo nuevo sin escribir código**: el equipo de producto quiere monitorear una tienda nueva. En vez de programar un scraper, le pasas la URL al endpoint y ya jala. Si la heurística falla, mandas la key de Gemini y la IA arma el config.
+- **Caso 2 — Catálogo nuevo sin escribir código**: el equipo de producto quiere monitorear una tienda nueva. En vez de programar un scraper, le pasas la URL al endpoint y ya corre. Si la heurística falla, mandas la key de Gemini y la IA arma el config.
 - **Caso 3 — Detector de estructura**: solo quieres entender cómo está armada una tienda (qué selectores CSS usa, qué tipo de plataforma corre). `POST /detect` te devuelve el config sin descargar los productos.
 - **Caso 4 — Integración rápida con n8n / Make / Zapier**: cualquier herramienta no-code que pueda hacer un POST con JSON puede usar esta API. Cero acoplamiento.
 - **Caso 5 — Comparadores ligeros para clientes**: vas a montar un MVP de comparador. No quieres invertir 2 semanas en N scrapers. Levantas este servicio y empiezas a iterar.
