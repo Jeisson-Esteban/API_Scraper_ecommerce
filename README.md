@@ -26,6 +26,16 @@ Por dentro corre una cascada: primero detecta si la página es Shopify, después
 - **Caso 4 — Integración rápida con n8n / Make / Zapier**: cualquier herramienta no-code que pueda hacer un POST con JSON puede usar esta API. Cero acoplamiento.
 - **Caso 5 — Comparadores ligeros para clientes**: vas a montar un MVP de comparador. No quieres invertir 2 semanas en N scrapers. Levantas este servicio y empiezas a iterar.
 
+## Limitaciones honestas (léelas antes de usar)
+
+Este scraper es **medianamente simple**. Resuelve la detección automática y el parsing, pero **no es un sistema anti-bloqueos de nivel enterprise**. Cosas que tienes que saber:
+
+- **No lo apuntes a Amazon, Mercado Libre, AliExpress, eBay o similares**. Esas plataformas tienen detección de bots seria (rate limiting agresivo, fingerprinting profundo, CAPTCHAs). El scraper va a fallar o te van a banear la IP rápido. Está pensado para **tiendas pequeñas o medianas**: retailers locales, marcas con tienda propia, competidores de nicho.
+- **Regula tus llamadas**. No pidas 50 páginas seguidas a la misma tienda. Recomendación práctica: máximo 5–10 páginas por e-commerce en una corrida, y espacia las corridas (cron cada N horas, no cada minuto). Si necesitas barrer catálogos enteros, añade tu propio sleep/delay entre requests.
+- **Sin proxy residencial, las VMs cloud están baneadas de entrada en muchos sitios**. Si lo corres desde AWS/GCP/Azure y un dominio te bloquea, ya empiezas perdiendo — configura `PROXY_URL` con un proxy residencial.
+- **No reemplaza un scraper a medida para casos críticos**. Si tu negocio depende de scrapear una tienda específica, eventualmente vas a querer escribir un scraper dedicado con manejo de sesión, retries inteligentes y rotación de proxies. Esto es punto de partida y herramienta para muchas tiendas a la vez, no la bala de plata.
+- **Respeta el `robots.txt` y los términos de servicio** de cada tienda. Esto es una herramienta — el uso responsable corre por tu cuenta.
+
 ## Requisitos previos
 
 - Python 3.11 o superior
