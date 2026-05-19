@@ -1,0 +1,14 @@
+# Scraping (Scrapling)
+scrapling[all]
+patchright
+
+# API REST
+fastapi
+uvicorn[standard]
+pydantic
+
+# Utilidades
+python-dotenv
+requests
+beautifulsoup4
+lxml
